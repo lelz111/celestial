@@ -8,6 +8,7 @@
    - B. `@Component`
    - C. `@RestController`
    - D. `@Repository`
+   Jawaban: C
 
 2. Di Spring, anotasi apa yang digunakan untuk menyuntikkan dependency ke dalam class?
 
@@ -15,6 +16,8 @@
    - B. `@Injectable`
    - C. `@Import`
    - D. `@Mapper`
+    Jawaban: A
+
 
 3. Di lapisan arsitektur Spring, Service berfungsi untuk:
 
@@ -22,6 +25,8 @@
    - B. Menyimpan data ke database langsung
    - C. Menyimpan log aplikasi
    - D. Menyimpan logika bisnis
+   Jawaban: D
+
 
 4. Class model di Java Spring biasanya digunakan untuk:
 
@@ -29,6 +34,7 @@
    - B. Menyimpan logika controller
    - C. Menyimpan struktur data (seperti data user, produk, dll.)
    - D. Mengatur pemetaan URL
+   Jawaban: C
 
 5. Jika kita ingin membuat method yang bisa diakses oleh endpoint `/hello`, anotasi apa yang digunakan?
 
@@ -36,26 +42,45 @@
    - B. `@Path("/hello")`
    - C. `@GetMapping("/hello")`
    - D. `@Route("/hello")`
+   Jawaban: C
 
 ---
 
 ### ✳️ Bagian 2: Benar / Salah
 
 6. `@Service` digunakan untuk menandai class sebagai lapisan Controller.
-7. Kita bisa membuat class model tanpa anotasi apapun jika hanya digunakan sebagai POJO.
-8. `@Autowired` bisa digunakan di constructor maupun field.
-9. Spring Boot membutuhkan file `application.yml` agar bisa berjalan.
-10. `@GetMapping` hanya bisa digunakan di class dengan anotasi `@Service`.
+Jawaban: Salah
 
+7. Kita bisa membuat class model tanpa anotasi apapun jika hanya digunakan sebagai POJO.
+Jawaban: Benar
+
+8. `@Autowired` bisa digunakan di constructor maupun field.
+Jawaban: Benar
+
+9. Spring Boot membutuhkan file `application.yml` agar bisa berjalan.
+Jawaban: Salah
+
+10. `@GetMapping` hanya bisa digunakan di class dengan anotasi `@Service`.
+Jawaban: Salah
 ---
 
 ### ✳️ Bagian 3: Isian Singkat
 
-11. Anotasi apa yang digunakan agar method bisa menangani permintaan POST?
+11. Anotasi apa yang digunakan agar method bisa menangani permintaan POST? 
+Jawaban: @PostMapping
+
 12. Apa nama file konfigurasi default di Spring Boot?
+Jawaban: application.properties
+
 13. Apa yang dimaksud dengan Dependency Injection?
+Jawaban:
+
 14. Bagaimana cara mendeklarasikan class `UserService` agar dikenali Spring sebagai Service?
+Jawaban: Menambahkan @Service pada class UserService
+
 15. Apa perbedaan `@RestController` dan `@Controller`?
+Jawaban: Controller biasanya digunakan untuk mengembalikan view, biasanya untuk view UI
+         RestController gabungan dari controller dan response body dimana return yang dikembalikan berupa data json
 
 ---
 
@@ -64,6 +89,17 @@
 16. Perbaiki kode berikut agar dapat dijalankan sebagai Controller:
 
 ```java
+public class HelloController {
+    @GetMapping("/hello")
+    public String hello() {
+        return "Hello";
+    }
+}
+```
+Jawaban:
+
+```java
+@RestController -> menambahkan restcontroller
 public class HelloController {
     @GetMapping("/hello")
     public String hello() {
@@ -80,6 +116,15 @@ public class Product {
     private int price;
 }
 ```
+Jawaban:
+
+```java
+@Data ->menambahkan @Data
+public class Product {
+    private String name;
+    private int price;
+}
+```
 
 18. Apa output dari method berikut?
 
@@ -89,6 +134,7 @@ public int sum() {
     return 2 + 3;
 }
 ```
+Jawaban: 5
 
 19. Kode service berikut error. Apa yang salah?
 
@@ -98,6 +144,7 @@ public class UserService {
     private UserRepository userRepository;
 }
 ```
+Jawaban:
 
 20. Apa masalah pada potongan kode berikut?
 
@@ -111,6 +158,7 @@ public class BookController {
     }
 }
 ```
+Jawaban: GetMapping harus memiliki path untuk me return books -> @GetMapping("/books")
 
 ---
 
@@ -124,6 +172,7 @@ public class BookController {
 - B. `@SpringSecurity`
 - C. `@EnableWebSecurity`
 - D. `@ActivateSecurity`
+Jawaban: C
 
 22. Komponen mana yang bertugas mengatur izin akses berdasarkan role atau otorisasi di Spring Security?
 
@@ -131,6 +180,7 @@ public class BookController {
 - B. `UserDetailsService`
 - C. `AuthenticationManager`
 - D. `HttpSecurity`
+Jawaban: D
 
 23. Untuk membuat otentikasi berbasis user login yang dikustomisasi, interface apa yang harus diimplementasi?
 
@@ -138,17 +188,26 @@ public class BookController {
 - B. `UserSecurity`
 - C. `UserDetailsService`
 - D. `SecurityService`
+Jawaban: C
 
 #### Benar / Salah
 
 24. Spring Security hanya bisa digunakan untuk REST API yang menggunakan JWT.
+Jawaban: Salah
+
 25. `@PreAuthorize("hasRole('ADMIN')")` digunakan untuk membatasi method agar hanya bisa diakses oleh pengguna dengan role ADMIN.
+Jawaban: Benar
+
 26. `BCryptPasswordEncoder` digunakan untuk mengenkripsi password agar tidak disimpan dalam bentuk plain text.
+Jawaban: Benar
 
 #### Isian Singkat
 
 27. Apa class konfigurasi yang umum dibuat untuk menyesuaikan aturan login, logout, dan authorization di Spring Security?
+Jawaban: SecurityConfig
+
 28. Apa anotasi yang digunakan agar method hanya bisa diakses jika pengguna memiliki hak tertentu?
+Jawaban: @PreAuthorize
 
 #### Perbaiki Kode / Analisis
 
@@ -166,6 +225,20 @@ public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     return http.build();
 }
 ```
+Jawaban:
+
+```java
+@Bean
+public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    http
+        .authorizeHttpRequests() -> tambahkan Http
+        .antMatchers("/admin").hasRole("ADMIN")
+        .anyRequest().authenticated()
+        .and()
+        .formLogin();
+    return http.build();
+}
+```
 
 30. Apa yang salah dengan konfigurasi login berikut?
 
@@ -176,5 +249,7 @@ http
   .and()
   .formLogin();
 ```
+Jawaban: jika menggunakan .permitAll() sebelum form login, makan yang terjadi adalah user akan langsung di permit tanpa
+         melalui form login terlebih dahulu
 
 ---
