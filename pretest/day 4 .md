@@ -73,7 +73,7 @@ Jawaban: @PostMapping
 Jawaban: application.properties
 
 13. Apa yang dimaksud dengan Dependency Injection?
-Jawaban:
+Jawaban: menginjeksi suatu dependency dari luar class kedalam class
 
 14. Bagaimana cara mendeklarasikan class `UserService` agar dikenali Spring sebagai Service?
 Jawaban: Menambahkan @Service pada class UserService
